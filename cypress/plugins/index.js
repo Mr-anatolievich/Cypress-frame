@@ -18,10 +18,15 @@
  const {
   addMatchImageSnapshotPlugin,
 } = require('cypress-image-snapshot/plugin');
-// eslint-disable-next-line no-unused-vars
+
+const cucumber = require('cypress-cucumber-preprocessor').default
+
+
 module.exports = (on, config) => {
   addMatchImageSnapshotPlugin(on, config);
   
   require('cypress-mochawesome-reporter/plugin')(on);
+
+  on('file:preprocessor', cucumber())
 
 }
